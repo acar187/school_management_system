@@ -1,0 +1,61 @@
+package com.school_system;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class SchoolManagerTest {
+
+    private SchoolManager manager;
+    private Student s1;
+    private Student s2;
+    private Teacher t1;
+    private Course c1;
+
+    @BeforeEach
+    void setup() {
+        manager = new SchoolManager();
+        s1 = new Student("Anna Müller", "anna@example.com", "M2025-001");
+        s2 = new Student("Max Schmidt", "max@example.com", "M2025-002");
+        t1 = new Teacher("Dr. Meier", "meier@example.com", "Mathematik");
+        c1 = new Course("Mathematik");
+
+        manager.addStudent(s1);
+        manager.addStudent(s2);
+        manager.addTeacher(t1);
+        manager.addCourse(c1);
+    }
+
+    @Test
+    void testAddStudentAndFindById() {
+        Student found = manager.findStudentById(s1.getId());
+        assertNotNull(found);
+        assertEquals("Anna Müller", found.getName());
+    }
+
+    @Test
+    void testAddTeacherAndFindById() {
+        Teacher found = manager.findTeacherById(t1.getId());
+        assertNotNull(found);
+        assertEquals("Mathematik", found.getSubject());
+    }
+
+    @Test
+    void testAssignStudentToCourse() {
+        manager.assignStudentToCourse(s1.getId(), c1.getId());
+        assertTrue(c1.getStudents().contains(s1));
+    }
+
+    @Test
+    void testAssignTeacherToCourse() {
+        manager.assignTeacherToCourse(t1.getId(), c1.getId());
+        assertEquals(t1, c1.getTeacher());
+    }
+
+    @Test
+    void testFindNonexistentStudent() {
+        Student missing = manager.findStudentById(999);
+        assertNull(missing);
+    }
+}
