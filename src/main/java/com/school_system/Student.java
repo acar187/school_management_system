@@ -18,5 +18,17 @@ public class Student extends Person {
         return "Student{" + super.toString() + ", matriculationNumber=" + matriculationNumber + '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student)) return false;
+        Student other = (Student) o;
+        return this.getId() == other.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(getId());
+    }
     
 }

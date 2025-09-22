@@ -1,14 +1,18 @@
 package com.school_system;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Course {
     //private static int counter = 100;  
     private int id;
     
     private String name;
-    private List<Student> studentsList = new ArrayList<>();
+    //private List<Student> studentsList = new ArrayList<>();
+    private Set<Student> studentsSet = new HashSet<>();
+
     private Teacher teacher; // Ein Kurs kann einen Lehrer haben
 
     public Course(String name) {
@@ -35,16 +39,17 @@ public class Course {
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
-    public List<Student> getStudents() {
-        return studentsList;
+    public Set<Student> getStudents() {
+        return studentsSet;
     }
     public void addStudent(Student student) {
-        if (!studentsList.contains(student)) {
-            studentsList.add(student);
-        }
+        // if (!studentsList.contains(student)) {
+        //     studentsList.add(student);
+        studentsSet.add(student);
     }
+    
     public void removeStudent(Student student) {
-        studentsList.remove(student);
+        studentsSet.remove(student);
     }
 
     // Verstehe ich nicht
@@ -56,7 +61,7 @@ public class Course {
     @Override
     public String toString() {
         String t = (teacher != null) ? "| Teacher: " + teacher.getName() : "";
-        return "Course [id=" + id + ", name=" + name + ", students=" + studentsList.size() + "]" + t;
+        return "Course [id=" + id + ", name=" + name + ", students=" + studentsSet.size() + "]" + t;
     }
 
     

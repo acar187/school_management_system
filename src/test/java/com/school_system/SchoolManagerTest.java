@@ -61,11 +61,48 @@ public class SchoolManagerTest {
 
     @Test
     void testAddAndFindCourseWithMap() {
-    Course c = new Course("Biologie");
-    manager.addCourse(c);
+        Course c = new Course("Biologie");
+        manager.addCourse(c);
 
-    Course found = manager.findCourseById(c.getId());
-    assertNotNull(found);
-    assertEquals("Biologie", found.getName());
-}
+        Course found = manager.findCourseById(c.getId());
+        assertNotNull(found);
+        assertEquals("Biologie", found.getName());
+    }
+
+    @Test
+    void testStudentNotAddedTwice() {
+        Course c = new Course("Physik");
+        Student s = new Student("Lena", "lena@example.com", "M2025-003");
+
+        c.addStudent(s);
+        c.addStudent(s); // zweites Mal
+
+        assertEquals(1, c.getStudents().size()); // sollte nur einmal drin sein
+    }
+
+//     @Test
+//     void testAssignNonexistentStudent() {
+//         Course c = new Course("Chemie");
+//         manager.addCourse(c);
+
+//         Exception exception = assertThrows(StudentNotFoundException.class, () -> {
+//             manager.assignStudentToCourse(999, c.getId());
+//         });
+
+//         assertTrue(exception.getMessage().contains("Student mit ID 999 nicht gefunden"));
+// }
+
+//     @Test
+//     void testAssignToNonexistentCourse() {
+//         Student s = new Student("Lukas", "lukas@example.com", "M2025-010");
+//         manager.addStudent(s);
+
+//         Exception exception = assertThrows(CourseNotFoundException.class, () -> {
+//             manager.assignStudentToCourse(s.getId(), 999);
+//         });
+
+//         assertTrue(exception.getMessage().contains("Kurs mit ID 999 nicht gefunden"));
+// }
+
+
 }

@@ -38,36 +38,44 @@ public class SchoolManager {
 
     // Zuweisung
     public void assignStudentToCourse(int studentId, int courseId) {
-        Student s = findStudentById(studentId);
-        Course c = findCourseById(courseId);
-        if (s != null && c != null) {
+        try {
+            Student s = findStudentById(studentId);
+            Course c = findCourseById(courseId);
             c.addStudent(s);
             System.out.println("✅ " + s.getName() + " wurde in Kurs " + c.getName() + " eingeschrieben.");
-        } else {
-            System.out.println("❌ Student oder Kurs nicht gefunden.");
+        } catch (StudentNotFoundException | CourseNotFoundException e) {
+            System.out.println("❌ " + e.getMessage());
         }
     }
 
     public void assignTeacherToCourse(int teacherId, int courseId) {
-        Teacher t = findTeacherById(teacherId);
-        Course c = findCourseById(courseId);
-        if (t != null && c != null) {
+        try {
+            Teacher t = findTeacherById(teacherId);
+            Course c = findCourseById(courseId);
             c.setTeacher(t);
             System.out.println("✅ " + t.getName() + " wurde als Lehrkraft für " + c.getName() + " gesetzt.");
-        } else {
-            System.out.println("❌ Lehrer oder Kurs nicht gefunden.");
+        } catch (CourseNotFoundException e) {
+            System.out.println("❌ " + e.getMessage());
         }
     }
 
      public Student findStudentById(int id) {
-        return studentsList.stream()
-                           .filter(s -> s.getId() == id)
+        Student s = studentsList.stream()
+                           .filter(st -> st.getId() == id)
                            .findFirst()
                            .orElse(null);
+        if (s == null) {
+            throw new StudentNotFoundException(id);
+        }
+        return s;
     }
 
     public Course findCourseById(int id) {
-        return coursesMap.get(id);
+        Course c = coursesMap.get(id);
+        if (c == null) {
+            throw new CourseNotFoundException(id);
+        }
+        return c;   
     }
 
     public Teacher findTeacherById(int id) {
