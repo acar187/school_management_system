@@ -4,20 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Course {
-    private static int counter = 100;  
-    private final int id;
+    //private static int counter = 100;  
+    private int id;
+    
     private String name;
     private List<Student> studentsList = new ArrayList<>();
     private Teacher teacher; // Ein Kurs kann einen Lehrer haben
 
     public Course(String name) {
-        this.id = counter++;
+        //this.id = counter++;
         this.name = name;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {
         return id;
     }
+
     public String getName() {
         return name;
     }
@@ -52,5 +58,7 @@ public class Course {
         String t = (teacher != null) ? "| Teacher: " + teacher.getName() : "";
         return "Course [id=" + id + ", name=" + name + ", students=" + studentsList.size() + "]" + t;
     }
+
+    
     
 }

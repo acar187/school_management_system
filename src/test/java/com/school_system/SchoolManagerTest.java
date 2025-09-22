@@ -58,4 +58,14 @@ public class SchoolManagerTest {
         Student missing = manager.findStudentById(999);
         assertNull(missing);
     }
+
+    @Test
+    void testAddAndFindCourseWithMap() {
+    Course c = new Course("Biologie");
+    manager.addCourse(c);
+
+    Course found = manager.findCourseById(c.getId());
+    assertNotNull(found);
+    assertEquals("Biologie", found.getName());
+}
 }

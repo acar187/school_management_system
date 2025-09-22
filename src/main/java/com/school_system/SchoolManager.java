@@ -1,16 +1,28 @@
 package com.school_system;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SchoolManager {
-    private List<Course> coursesList = new ArrayList<>();
+    //private List<Course> coursesList = new ArrayList<>();
+    private Map<Integer, Course> coursesMap = new HashMap<>();
+
     private List<Student> studentsList = new ArrayList<>();
     private List<Teacher> teachersList = new ArrayList<>();
 
+    // Counter für IDs
+    private int nextStudentId = 1;
+    private int nextTeacherId = 1;
+    private int nextCourseId = 1;
+
     public void addCourse(Course course) {
-        coursesList.add(course);
+        course.setId(nextCourseId++);
+        coursesMap.put(course.getId(), course);
     }
+
     public void addStudent(Student student) {
         studentsList.add(student);
     }
@@ -55,10 +67,7 @@ public class SchoolManager {
     }
 
     public Course findCourseById(int id) {
-        return coursesList.stream()
-                          .filter(c -> c.getId() == id)
-                          .findFirst()
-                          .orElse(null);
+        return coursesMap.get(id);
     }
 
     public Teacher findTeacherById(int id) {
@@ -68,8 +77,8 @@ public class SchoolManager {
                            .orElse(null);
     }
     
-    public List<Course> getCourses() {
-        return coursesList;
+    public Collection<Course> getCourses() {
+        return coursesMap.values();
     }
 
     public List<Student> getStudents() {
