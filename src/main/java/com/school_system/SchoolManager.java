@@ -84,6 +84,20 @@ public class SchoolManager {
                            .findFirst()
                            .orElse(null);
     }
+
+    public Student findStudentByName(String name) {
+        return studentsList.stream()
+                           .filter(s -> s.getName().equalsIgnoreCase(name))
+                           .findFirst()
+                           .orElse(null);
+    }
+
+    public Course findCourseByName(String name) {
+        return coursesMap.values().stream()
+                         .filter(c -> c.getName().equalsIgnoreCase(name))
+                         .findFirst()
+                         .orElse(null);
+    }
     
     public Collection<Course> getCourses() {
         return coursesMap.values();

@@ -104,5 +104,14 @@ public class SchoolManagerTest {
 //         assertTrue(exception.getMessage().contains("Kurs mit ID 999 nicht gefunden"));
 // }
 
+    @Test
+    void testFindStudentByName(){
+        Student s = new Student("Max","max@gmail.com","M2025-002"); 
+        manager.addStudent(s);
+
+        Student found = manager.findStudentByName("Max");
+        assertNotNull(found);
+        assertEquals("Max", found.getName());
+    }
 
 }

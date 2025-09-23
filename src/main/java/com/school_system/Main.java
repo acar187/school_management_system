@@ -17,6 +17,8 @@ public class Main {
             System.out.println("5: Lehrer zu Kurs zuordnen");
             System.out.println("6: Alle Kurse anzeigen");
             System.out.println("7: Studenten eines Kurses anzeigen");
+            System.out.println("8: Student nach Name suchen");
+            System.out.println("9: Kurs nach Name suchen");
             System.out.println("0: Beenden");
             System.out.print("Eingabe: ");
 
@@ -80,6 +82,26 @@ public class Main {
                         c.getStudents().forEach(st -> System.out.println("  - " + st));
                     if (c.getTeacher() != null)
                         System.out.println("Lehrer: " + c.getTeacher());
+                    } else {
+                        System.out.println("⚠️ Kurs nicht gefunden!");
+                    }
+                }
+                case 8 -> {
+                    System.out.print("Studentenname: ");
+                    String name = sc.nextLine();
+                    Student s = manager.findStudentByName(name);
+                    if (s != null) {
+                        System.out.println("🔍 Gefundener Student: " + s);
+                    } else {
+                        System.out.println("⚠️ Student nicht gefunden!");
+                    }
+                }
+                case 9 -> {
+                    System.out.print("Kursname: ");
+                    String name = sc.nextLine();
+                    Course c = manager.findCourseByName(name);
+                    if (c != null) {
+                        System.out.println("🔍 Gefundener Kurs: " + c);
                     } else {
                         System.out.println("⚠️ Kurs nicht gefunden!");
                     }
