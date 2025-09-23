@@ -111,7 +111,7 @@ public class SchoolManager {
         return teachersList;
     }
 
-    public List<Student> geStudentsSortedByName() {
+    public List<Student> getStudentsSortedByName() {
         return studentsList.stream()
                            .sorted((s1, s2) -> s1.getName().compareToIgnoreCase(s2.getName()))
                            .toList();
@@ -122,4 +122,5 @@ public class SchoolManager {
                          .sorted((c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()))
                          .toList();
     }
+    
 }

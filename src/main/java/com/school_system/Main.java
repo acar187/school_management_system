@@ -19,6 +19,8 @@ public class Main {
             System.out.println("7: Studenten eines Kurses anzeigen");
             System.out.println("8: Student nach Name suchen");
             System.out.println("9: Kurs nach Name suchen");
+            System.out.println("10: Studenten alphabetisch anzeigen");
+            System.out.println("11: Kurse alphabetisch anzeigen");
             System.out.println("0: Beenden");
             System.out.print("Eingabe: ");
 
@@ -105,6 +107,14 @@ public class Main {
                     } else {
                         System.out.println("⚠️ Kurs nicht gefunden!");
                     }
+                }
+                case 10 -> {
+                    System.out.println("👥 Studenten alphabetisch:");
+                    manager.getStudentsSortedByName().forEach(System.out::println);
+                }
+                case 11 -> {
+                    System.out.println("📚 Kurse alphabetisch:");
+                    manager.getCoursesSortedByName().forEach(System.out::println);
                 }
                 case 0 -> {
                     running = false;
