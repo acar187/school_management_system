@@ -110,4 +110,16 @@ public class SchoolManager {
     public List<Teacher> getTeachersList() {
         return teachersList;
     }
+
+    public List<Student> geStudentsSortedByName() {
+        return studentsList.stream()
+                           .sorted((s1, s2) -> s1.getName().compareToIgnoreCase(s2.getName()))
+                           .toList();
+    }
+
+    public List<Course> getCoursesSortedByName() {
+        return coursesMap.values().stream()
+                         .sorted((c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()))
+                         .toList();
+    }
 }
