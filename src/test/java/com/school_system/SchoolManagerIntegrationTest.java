@@ -3,6 +3,8 @@ package com.school_system;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 public class SchoolManagerIntegrationTest {
 
     @Test
@@ -33,4 +35,23 @@ public class SchoolManagerIntegrationTest {
         assertNotNull(foundByName, "Kurs sollte gefunden werden");
         assertEquals("Biologie", foundByName.getName());
     }
+
+    @Test
+    void testStudentsSortedByName() {
+        SchoolManager manager = new SchoolManager();
+        Student s1 = new Student("Zoe", "z@example.com", "M2025-100");
+        Student s2 = new Student("Anna", "a@example.com", "M2025-101");
+        Student s3 = new Student("Markus", "m@example.com", "M2025-102");
+
+        manager.addStudent(s1);
+        manager.addStudent(s2);
+        manager.addStudent(s3);
+
+        List<Student> sorted = manager.getStudentsSortedByName();
+
+        assertEquals("Anna", sorted.get(0).getName());
+        assertEquals("Markus", sorted.get(1).getName());
+        assertEquals("Zoe", sorted.get(2).getName());
+}
+
 }
