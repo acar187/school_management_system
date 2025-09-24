@@ -2,6 +2,7 @@ package com.school_system;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -149,4 +150,42 @@ public class SchoolManager {
         }
         return teachingCourses;
     }
+
+    public int amountOfStudents() {
+        return studentsList.size();
+    }
+    public int amountOfCourses() {
+        return coursesMap.size();
+    }
+    public int amountOfTeachers() {
+        return teachersList.size();
+    }
+
+    public int countStudentsInCourse(int courseId) {
+        // Course c = findCourseById(courseId);
+        // return c.getStudents().size();
+        // or
+        return getStudentsInCourse(courseId).size();
+    }
+
+    public int countCoursesOfTeacher(int teacherId) {
+        // Teacher t = findTeacherById(teacherId);
+        // int count = 0;
+        // for (Course c : coursesMap.values()) {
+        //     if (t.equals(c.getTeacher())) {
+        //         count++;
+        //     }
+        // }
+        // return count;
+        // or
+        return getCoursesForTeacher(teacherId).size();
+    }
+
+    public Course getCourseWithMostStudents() {
+        return coursesMap.values().stream()
+                  .max(Comparator.comparingInt(c -> c.getStudents().size()))
+                  .orElse(null);
+    }
+
+
 }

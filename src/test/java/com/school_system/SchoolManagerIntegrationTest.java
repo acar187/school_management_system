@@ -73,5 +73,41 @@ public class SchoolManagerIntegrationTest {
         assertEquals("Physik", result.get(0).getName());
     }
 
+    @Test
+    void testCountStudentsInCourse() {
+        SchoolManager manager = new SchoolManager();
+
+        Student s1 = new Student("Mia", "mia@example.com", "M2025-300");
+        Student s2 = new Student("Jonas", "jonas@example.com", "M2025-301");
+        manager.addStudent(s1);
+        manager.addStudent(s2);
+
+        Course c = new Course("Geschichte");
+        manager.addCourse(c);
+
+        manager.assignStudentToCourse(s1.getId(), c.getId());
+        manager.assignStudentToCourse(s2.getId(), c.getId());
+
+        assertEquals(2, manager.countStudentsInCourse(c.getId()));
+    }
+
+    @Test
+    void testGetCourseWithMostStudents() {
+        SchoolManager manager = new SchoolManager();
+        
+        Course c1 = new Course("Biologie");
+        Course c2 = new Course("Chemie");
+        manager.addCourse(c1);
+        manager.addCourse(c2);
+
+        Student s = new Student("Eva", "eva@example.com", "M2025-302");
+        manager.addStudent(s);
+        manager.assignStudentToCourse(s.getId(), c1.getId());
+
+        Course top = manager.getCourseWithMostStudents();
+        assertEquals("Biologie", top.getName());
+    }
+
+
 
 }

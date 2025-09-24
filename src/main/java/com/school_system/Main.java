@@ -25,6 +25,9 @@ public class Main {
             System.out.println("12: Studenten eines Kurses anzeigen");
             System.out.println("13: Kurse eines Studenten anzeigen");
             System.out.println("14: Kurse eines Lehrers anzeigen");
+            System.out.println("15: Anzahl Studenten in einem Kurs");
+            System.out.println("16: Anzahl Kurse eines Lehrers");
+            System.out.println("17: Kurs mit den meisten Studenten");
             System.out.println("0: Beenden");
             System.out.print("Eingabe: ");
 
@@ -140,6 +143,26 @@ public class Main {
                     List<Course> list = manager.getCoursesForTeacher(tId);
                     System.out.println("📋 Kurse des Lehrers:");
                     list.forEach(System.out::println);
+                }
+                case 15 -> {
+                    System.out.print("Kurs-ID: ");
+                    int cId = Integer.parseInt(sc.nextLine());
+                    int count = manager.countStudentsInCourse(cId);
+                    System.out.println("📊 Anzahl der Studenten im Kurs: " + count);
+                }
+                case 16 -> {
+                    System.out.print("Lehrer-ID: ");
+                    int tId = Integer.parseInt(sc.nextLine());
+                    int count = manager.countCoursesOfTeacher(tId);
+                    System.out.println("📊 Anzahl der Kurse des Lehrers: " + count);
+                }
+                case 17 -> { 
+                    Course c = manager.getCourseWithMostStudents();
+                    if (c != null) {
+                        System.out.println("🏆 Kurs mit den meisten Studenten: " + c + " (Anzahl: " + c.getStudents().size() + ")");
+                    } else {
+                        System.out.println("⚠️ Keine Kurse verfügbar!");
+                    }
                 }
                 case 0 -> {
                     running = false;
