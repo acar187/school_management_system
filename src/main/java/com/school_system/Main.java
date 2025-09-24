@@ -1,5 +1,6 @@
 package com.school_system;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -21,6 +22,9 @@ public class Main {
             System.out.println("9: Kurs nach Name suchen");
             System.out.println("10: Studenten alphabetisch anzeigen");
             System.out.println("11: Kurse alphabetisch anzeigen");
+            System.out.println("12: Studenten eines Kurses anzeigen");
+            System.out.println("13: Kurse eines Studenten anzeigen");
+            System.out.println("14: Kurse eines Lehrers anzeigen");
             System.out.println("0: Beenden");
             System.out.print("Eingabe: ");
 
@@ -115,6 +119,27 @@ public class Main {
                 case 11 -> {
                     System.out.println("📚 Kurse alphabetisch:");
                     manager.getCoursesSortedByName().forEach(System.out::println);
+                }
+                case 12 -> {
+                    System.out.print("Kurs-ID: ");
+                    int cId = Integer.parseInt(sc.nextLine());
+                    List<Student> list = manager.getStudentsInCourse(cId);
+                    System.out.println("📋 Studenten im Kurs:");
+                    list.forEach(System.out::println);
+                }
+                case 13 -> {
+                    System.out.print("Studenten-ID: ");
+                    int sId = Integer.parseInt(sc.nextLine());
+                    List<Course> list = manager.getCoursesForStudent(sId);
+                    System.out.println("📋 Kurse des Studenten:");
+                    list.forEach(System.out::println);
+                }
+                case 14 -> {
+                    System.out.print("Lehrer-ID: ");
+                    int tId = Integer.parseInt(sc.nextLine());
+                    List<Course> list = manager.getCoursesForTeacher(tId);
+                    System.out.println("📋 Kurse des Lehrers:");
+                    list.forEach(System.out::println);
                 }
                 case 0 -> {
                     running = false;

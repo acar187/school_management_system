@@ -122,5 +122,31 @@ public class SchoolManager {
                          .sorted((c1, c2) -> c1.getName().compareToIgnoreCase(c2.getName()))
                          .toList();
     }
+
+    public List<Student> getStudentsInCourse(int courseId) {
+        Course c = findCourseById(courseId);
+        return new ArrayList<>(c.getStudents()) ;   
+    }
     
+    public List<Course> getCoursesForStudent(int studentId) {
+        Student s = findStudentById(studentId);
+        List<Course> enrolledCourses = new ArrayList<>();
+        for (Course c : coursesMap.values()) {
+            if (c.getStudents().contains(s)) {
+                enrolledCourses.add(c);
+            }
+        }
+        return enrolledCourses;
+    }
+
+    public List<Course> getCoursesForTeacher(int teacherId) {
+        Teacher t = findTeacherById(teacherId);
+        List<Course> teachingCourses = new ArrayList<>();
+        for (Course c : coursesMap.values()) {
+            if (t.equals(c.getTeacher())) {
+                teachingCourses.add(c);
+            }
+        }
+        return teachingCourses;
+    }
 }

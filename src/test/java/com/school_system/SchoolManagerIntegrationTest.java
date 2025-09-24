@@ -52,6 +52,26 @@ public class SchoolManagerIntegrationTest {
         assertEquals("Anna", sorted.get(0).getName());
         assertEquals("Markus", sorted.get(1).getName());
         assertEquals("Zoe", sorted.get(2).getName());
-}
+    }
+
+    @Test
+    void testGetCoursesOfStudent() {
+        SchoolManager manager = new SchoolManager();
+        Student s = new Student("Tom", "tom@example.com", "M2025-200");
+        manager.addStudent(s);
+
+        Course c1 = new Course("Physik");
+        Course c2 = new Course("Mathematik");
+        manager.addCourse(c1);
+        manager.addCourse(c2);
+
+        manager.assignStudentToCourse(s.getId(), c1.getId());
+
+        List<Course> result = manager.getCoursesForStudent(s.getId());
+
+        assertEquals(1, result.size());
+        assertEquals("Physik", result.get(0).getName());
+    }
+
 
 }
