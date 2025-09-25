@@ -1,5 +1,7 @@
 package com.school_system;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -187,5 +189,17 @@ public class SchoolManager {
                   .orElse(null);
     }
 
+    public void exportStudentsToCSV(String filename) {
+        try (FileWriter writer = new FileWriter(filename)) 
+        { writer.write("id,name,email,matriculationNumber\n");
+            for (Student s : studentsList) {
+                writer.write(s.getId() + "," + s.getName() + "," + s.getEmail() + "," + s.getMatriculationNumber() + "\n");
+            }
+            System.out.println("✅ Studenten wurden nach " + filename + " exportiert.");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            System.out.println("❌ Fehler beim Exportieren der Studenten: " + e.getMessage());
+        }
 
+    }
 }
