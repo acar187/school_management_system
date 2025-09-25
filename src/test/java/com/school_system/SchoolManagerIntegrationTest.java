@@ -108,6 +108,23 @@ public class SchoolManagerIntegrationTest {
         assertEquals("Biologie", top.getName());
     }
 
+    @Test
+    void testExportImportStudents() {
+        SchoolManager manager = new SchoolManager();
+        Student s = new Student("Paul", "paul@example.com", "M2025-400");
+        manager.addStudent(s);
+
+        String file = "students_test.csv";
+        manager.exportStudentsToCSV(file);
+
+        // Neue Instanz vom Manager zum Importieren
+        SchoolManager newManager = new SchoolManager();
+        newManager.importStudentsFromCSV(file);
+
+        Student imported = newManager.findStudentByName("Paul");
+        assertNotNull(imported);
+        assertEquals("Paul", imported.getName());
+}
 
 
 }

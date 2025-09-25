@@ -1,7 +1,10 @@
 package com.school_system;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -200,6 +203,27 @@ public class SchoolManager {
             // TODO Auto-generated catch block
             System.out.println("❌ Fehler beim Exportieren der Studenten: " + e.getMessage());
         }
-
     }
+
+    public void importStudentsFromCSV(String filename) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line = reader.readLine();
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 4) {
+                    int id = Integer.parseInt(parts[0]);
+                    String name = parts[1];
+                    String email = parts[2];
+                    String matriculationNumber = parts[3];
+                    Student s = new Student(name, email, matriculationNumber);
+                    studentsList.add(s); 
+                }
+            }
+            System.out.println("✅ Studenten wurden aus " + filename + " importiert.");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            System.out.println("❌ Fehler beim Importieren der Studenten: " + e.getMessage());
+        }
+    }
+
 }
