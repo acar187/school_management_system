@@ -36,5 +36,13 @@ public class App {
                 
             }
         }
+
+        // Export der Studenten in eine CSV-Datei
+        schoolManager.exportStudentsToCSV("students.csv");   
     }
+
+    public void importStudentsFromCSV(String filename) {
+        // Implementierung des Imports von Studenten aus einer CSV-Datei
+        
+    }   
 }

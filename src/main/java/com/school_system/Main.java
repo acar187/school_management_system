@@ -28,6 +28,8 @@ public class Main {
             System.out.println("15: Anzahl Studenten in einem Kurs");
             System.out.println("16: Anzahl Kurse eines Lehrers");
             System.out.println("17: Kurs mit den meisten Studenten");
+            System.out.println("18: Studenten nach CSV exportieren");
+            System.out.println("19: Studenten aus CSV importieren");
             System.out.println("0: Beenden");
             System.out.print("Eingabe: ");
 
@@ -164,6 +166,17 @@ public class Main {
                         System.out.println("⚠️ Keine Kurse verfügbar!");
                     }
                 }
+                case 18 -> {
+                    System.out.print("Dateiname: ");
+                    String filename = sc.nextLine();
+                    manager.exportStudentsToCSV(filename);
+                }
+                case 19 -> {
+                    System.out.print("Dateiname: ");
+                    String filename = sc.nextLine();
+                    manager.importStudentsFromCSV(filename);
+                }
+
                 case 0 -> {
                     running = false;
                     System.out.println("Programm beendet.");
