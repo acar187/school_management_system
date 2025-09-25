@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
 import java.util.List;
 
 public class SchoolManagerTest {
@@ -116,6 +117,5 @@ public class SchoolManagerTest {
         assertEquals("Max", found.getName());
     }
 
-    
 
 }
