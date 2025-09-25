@@ -3,6 +3,7 @@ package com.school_system;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
 import java.util.List;
 
 public class SchoolManagerIntegrationTest {
@@ -125,6 +126,26 @@ public class SchoolManagerIntegrationTest {
         assertNotNull(imported);
         assertEquals("Paul", imported.getName());
 }
+    @Test
+    void testExportSchoolReport() {
+        SchoolManager manager = new SchoolManager();
+        Teacher t = new Teacher("Frau Schmidt", "schmidt@example.com", "Mathematik");
+        manager.addTeacher(t);
+
+        Student s = new Student("Anna", "anna@example.com", "M2025-500");
+        manager.addStudent(s);
+
+        Course c = new Course("Mathematik");
+        manager.addCourse(c);
+        manager.assignTeacherToCourse(t.getId(), c.getId());
+        manager.assignStudentToCourse(s.getId(), c.getId());
+
+        String file = "school_report.txt";
+        manager.exportSchoolReport(file);
+
+        File f = new File(file);
+        assertTrue(f.exists(), "Report-Datei sollte existieren");
+    }
 
 
 }

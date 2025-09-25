@@ -30,6 +30,8 @@ public class Main {
             System.out.println("17: Kurs mit den meisten Studenten");
             System.out.println("18: Studenten nach CSV exportieren");
             System.out.println("19: Studenten aus CSV importieren");
+            System.out.println("20: Schulreport exportieren");
+
             System.out.println("0: Beenden");
             System.out.print("Eingabe: ");
 
@@ -176,6 +178,12 @@ public class Main {
                     String filename = sc.nextLine();
                     manager.importStudentsFromCSV(filename);
                 }
+                case 20 -> {
+                    System.out.print("Dateiname: ");
+                    String filename = sc.nextLine();
+                    manager.exportSchoolReport(filename);
+                }
+
 
                 case 0 -> {
                     running = false;

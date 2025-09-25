@@ -1,9 +1,11 @@
 package com.school_system;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -226,4 +228,28 @@ public class SchoolManager {
         }
     }
 
+    public void exportSchoolReport(String filename) {
+        try (PrintWriter writer = new PrintWriter(filename)) {
+            writer.println("============ Schulbericht ============");
+
+            for (Course c : coursesMap.values()) {
+                writer.println("Kurs: " + c.getName() + " (ID: " + c.getId() + ")");
+                Teacher t = c.getTeacher();
+                String teacherInfo = (t != null) ? t.getName() + " (ID: " + t.getId() + ")" : "Kein Lehrer zugewiesen";
+                writer.println("Lehrer: " + teacherInfo);
+                writer.println("Anzahl der Studenten: " + c.getStudents().size());
+                writer.println("Studenten:");
+                for (Student s : c.getStudents()) {
+                    writer.println(" - " + s.getName() + " (ID: " + s.getId() + ", Email: " + s.getEmail() + ", Matrikelnummer: " + s.getMatriculationNumber() + ")");
+                }
+                writer.println("-------------------------------------");
+            }
+            System.out.println("✅ Schulbericht wurde nach " + filename + " exportiert.");
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            System.out.println("❌ Fehler beim Exportieren des Schulberichts: " + e.getMessage());
+        }
+        
+    }
 }
+        
