@@ -249,6 +249,7 @@ public class SchoolManager {
             // TODO Auto-generated catch block
             System.out.println("❌ Fehler beim Exportieren des Schulberichts: " + e.getMessage());
         }
+        
     }
 }
         
