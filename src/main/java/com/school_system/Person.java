@@ -2,7 +2,7 @@ package com.school_system;
 
 public abstract class Person {
     private static int counter = 1;
-    private int id;
+    protected int id;
     private String name;
     private String email;
 
@@ -17,6 +17,10 @@ public abstract class Person {
     }
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
     public String getEmail() {
         return email;

@@ -2,43 +2,23 @@ package com.school_system;
 
 public class App {
     public static void main(String[] args) {
-        // SchoolManager schoolManager = new SchoolManager();
+        StudentDAO studentDAO = new StudentDAO();
 
-        // Student student1 = new Student("Alice", "alice@gmail.com","M12345");
-        // Student student2 = new Student("Bob", "bob@gmail.com", "M67890");
+        //CREATE 
+        Student s1 = new Student("Anna", "anna@example.com", "M2025-001");
+        studentDAO.addStudent(s1);
 
-        // schoolManager.addStudent(student1);
-        // schoolManager.addStudent(student2);
+        //READ
+        System.out.println("Alle Studenten in der Datenbank:");
+        for (Student s : studentDAO.getAllStudents()) {
+            System.out.println(s);
+        }
 
-        // Teacher teacher1 = new Teacher( "Dr. Smith", "smith@gmail.com", "T98765");
-        // schoolManager.addTeacher(teacher1);
+        //UPDATE
+        s1.setName("Anna Müller");
+        studentDAO.updateStudent(s1);
 
-        // Course course1 = new Course("Mathematik");
-        // schoolManager.addCourse(course1);
-
-        // schoolManager.assignStudentToCourse(student1.getId(), course1.getId());
-        // schoolManager.assignStudentToCourse(student2.getId(), course1.getId());
-        // schoolManager.assignTeacherToCourse(teacher1.getId(), course1.getId());
-
-        
-        // // Ausgabe
-        // System.out.println("\n📚 Kurse:");
-        // schoolManager.getCourses().forEach(c -> {
-        //     System.out.println(c);
-        //     c.getStudents().forEach(st -> System.out.println("  - " + st));
-        // });
-
-        // System.out.println("\nKursdetails:");
-        // for (Course course : schoolManager.getCourses()) {
-        //     System.out.println(course);
-        //     for (Student student : course.getStudents()) {
-        //         System.out.println(" - " + student); 
-                
-        //     }
-        // }
-
-        DatabaseConnector.connect();
+        //DELETE
+        studentDAO.deleteStudent(s1.getId());
     }
-
-     
 }

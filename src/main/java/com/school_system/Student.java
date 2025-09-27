@@ -30,5 +30,13 @@ public class Student extends Person {
     public int hashCode() {
         return Integer.hashCode(getId());
     }
+
+    public void setId(int id) {
+        this.id = id;
+        
+    }
+
+    
+    
     
 }
