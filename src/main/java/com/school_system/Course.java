@@ -32,6 +32,10 @@ public class Course {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }   
+
     public Teacher getTeacher() {
         return teacher;
     }
@@ -63,8 +67,4 @@ public class Course {
         String t = (teacher != null) ? "| Teacher: " + teacher.getName() : "";
         return "Course [id=" + id + ", name=" + name + ", students=" + studentsSet.size() + "]" + t;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }   
 }
