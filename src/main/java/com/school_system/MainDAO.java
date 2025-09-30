@@ -1,5 +1,6 @@
 package com.school_system;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class MainDAO {  
@@ -24,6 +25,10 @@ public class MainDAO {
             System.out.println("10. Student löschen");
             System.out.println("11. Kurs aktualisieren");
             System.out.println("12. Kurs löschen");
+            System.out.println("13. Studenten nach CSV exportieren ---studenten.csv---");
+            System.out.println("14. Kurse exportieren (CSV) ----kurse.csv---");  
+            System.out.println("15. Einschreibungen exportieren (CSV) ---einschreibungen.csv---");
+             System.out.println("16. Studenten von CSV importieren ---importStudenten.csv---");
             System.out.println("0. Beenden");
             System.out.print("👉 Auswahl: ");
 
@@ -62,10 +67,22 @@ public class MainDAO {
                     }
                 }
                 case 5 -> {
-                    System.out.print("Studenten-ID: ");
-                    int studentId = scanner.nextInt();
-                    System.out.print("Kurs-ID: ");
-                    int courseId = scanner.nextInt();
+                    //System.out.print("Studenten-ID: ");
+                    //int studentId = scanner.nextInt();
+                    int studentId = readInt(scanner, "Studenten-ID: ");
+                    if (!studentDAO.studentExists(studentId)) {
+                        System.out.println("❌ Kein Student mit der ID " + studentId + " gefunden.");
+                        break;
+                        
+                    }
+                    //System.out.print("Kurs-ID: ");
+                    //int courseId = scanner.nextInt();
+                    int courseId = readInt(scanner, "Kurs-ID: ");
+                    if (!courseDAO.courseExists(courseId)) {
+                        System.out.println("❌ Kein Kurs mit der ID " + courseId + " gefunden.");
+                        break;
+                    }
+
                     Enrollment enrollment = new Enrollment(studentId, courseId);
                     enrollmentDAO.addEnrollment(enrollment);
                     System.out.println("✅ Student in Kurs eingeschrieben!");
@@ -77,11 +94,22 @@ public class MainDAO {
                     }
                 }
                 case 7 -> {
-                    System.out.print("Studenten-ID: ");
-                    int studentId = scanner.nextInt();
+                    // System.out.print("Studenten-ID: ");
+                    // int studentId = scanner.nextInt();
+                    int studentId = readInt(scanner, "Studenten-ID: ");
+                     if (!studentDAO.studentExists(studentId)) {
+                        System.out.println("❌ Kein Student mit der ID " + studentId + " gefunden.");
+                        break;
+                    }
+                    List<String> courses = enrollmentDAO.getCoursesByStudentId(studentId);
+                    if (courses.isEmpty()) {
+                        System.out.println("❌ Der Student ist in keine Kurse eingeschrieben.");
+                        break;
+                    }else {
                     System.out.println("📋 Kurse des Studenten:");
-                    for (String courseName : enrollmentDAO.getCoursesByStudentId(studentId)) {
+                    for (String courseName : courses) {
                         System.out.println(courseName);
+                        }
                     }
                 }
                 case 8 -> {
@@ -128,6 +156,28 @@ public class MainDAO {
                     scanner.nextLine(); // Zeilenumbruch einlesen
                     courseDAO.deleteCourse(courseId);
                 }
+                case 13 -> {
+                    // System.out.print("Dateiname für den CSV-Export (z.B. studenten.csv): ");
+                    // String filename = scanner.nextLine();
+                    CSVExporter.exportStudentsToCSV("studenten.csv");
+                }
+                case 14 -> {
+                    // System.out.print("Dateiname für den CSV-Export (z.B. kurse.csv): ");
+                    // String filename = scanner.nextLine();
+                    CSVExporter.exportCoursesToCSV("kurse.csv");
+                }   
+                case 15 -> {
+                    // System.out.print("Dateiname für den CSV-Export (z.B. einschreibungen.csv): ");
+                    // String filename = scanner.nextLine();
+                    List<EnrollmentView> enrollments = enrollmentDAO.getAllEnrollmentViews();
+                    CSVExporter.exportEnrollmentsToCSV("einschreibungen.csv");
+                }
+                case 16 -> {
+                    // System.out.print("Dateipfad für den CSV-Import (z.B. importStudenten.csv): ");
+                    // String filePath = scanner.nextLine();
+                    CSVImporter.importStudentFromCSV("importStudenten.csv", studentDAO);
+                }
+
                 case 0 -> {
                     running = false;
                     System.out.println("👋 Programm beendet.");
@@ -139,6 +189,19 @@ public class MainDAO {
             
         }
         scanner.close();
+    }
+
+    private static int readInt(Scanner scanner, String prompt) {
+        while (true) {
+         {
+            System.out.print(prompt);
+            try {
+                return Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.print("Ungültige Eingabe. Bitte eine Zahl eingeben: ");
+                }
+            }
+        }
     }
         
 }

@@ -99,4 +99,17 @@ public class StudentDAO {
             System.out.println("⚠️ Fehler beim Löschen des Studenten: " + e.getMessage());
         }
     }
+
+    public boolean studentExists(int studentId) {
+        String sql = "SELECT id FROM students WHERE id = ?";
+        try (Connection conn = DatabaseConnector.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, studentId);
+            ResultSet rs = pstmt.executeQuery();
+            return rs.next(); // Gibt true zurück, wenn ein Datensatz gefunden wurde
+        } catch (SQLException e) {
+            System.out.println("Fehler beim Überprüfen der Existenz des Studenten: " + e.getMessage());
+            return false;
+        }
+    }
 }

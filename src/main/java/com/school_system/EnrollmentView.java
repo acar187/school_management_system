@@ -12,6 +12,15 @@ public class EnrollmentView {
         this.courseName = courseName;
     }
 
+    public int getId() {
+        return id;
+    }
+    public String getStudentName() {
+        return studentName;
+    }
+    public String getCourseName() {
+        return courseName;
+    }
 
     @Override
     public String toString() {

@@ -90,4 +90,17 @@ public class CourseDAO {
             System.out.println("Fehler beim Löschen des Kurses: " + e.getMessage());
         }
     }
+
+    public boolean courseExists(int courseId) {
+        String sql = "SELECT id FROM courses WHERE id = ?";
+        try (Connection conn = DatabaseConnector.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, courseId);
+            ResultSet rs = pstmt.executeQuery();
+            return rs.next(); // true, wenn ein Datensatz gefunden wurde
+        } catch (SQLException e) {
+            System.out.println("Fehler beim Überprüfen des Kurses: " + e.getMessage());
+            return false;
+        }
+    }
 }   
