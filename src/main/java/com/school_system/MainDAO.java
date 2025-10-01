@@ -28,7 +28,7 @@ public class MainDAO {
             System.out.println("13. Studenten nach CSV exportieren ---studenten.csv---");
             System.out.println("14. Kurse exportieren (CSV) ----kurse.csv---");  
             System.out.println("15. Einschreibungen exportieren (CSV) ---einschreibungen.csv---");
-             System.out.println("16. Studenten von CSV importieren ---importStudenten.csv---");
+            System.out.println("16. Studenten von CSV importieren ---importStudenten.csv---");
             System.out.println("0. Beenden");
             System.out.print("👉 Auswahl: ");
 
