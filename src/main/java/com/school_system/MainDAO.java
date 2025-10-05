@@ -29,6 +29,7 @@ public class MainDAO {
             System.out.println("14. Kurse exportieren (CSV) ----kurse.csv---");  
             System.out.println("15. Einschreibungen exportieren (CSV) ---einschreibungen.csv---");
             System.out.println("16. Studenten von CSV importieren ---importStudenten.csv---");
+            System.out.println("19. Report: Studenten pro Kurs");
             System.out.println("0. Beenden");
             System.out.print("👉 Auswahl: ");
 
@@ -169,13 +170,17 @@ public class MainDAO {
                 case 15 -> {
                     // System.out.print("Dateiname für den CSV-Export (z.B. einschreibungen.csv): ");
                     // String filename = scanner.nextLine();
-                    List<EnrollmentView> enrollments = enrollmentDAO.getAllEnrollmentViews();
+                    //List<EnrollmentView> enrollments = enrollmentDAO.getAllEnrollmentViews();
                     CSVExporter.exportEnrollmentsToCSV("einschreibungen.csv");
                 }
                 case 16 -> {
                     // System.out.print("Dateipfad für den CSV-Import (z.B. importStudenten.csv): ");
                     // String filePath = scanner.nextLine();
                     CSVImporter.importStudentFromCSV("importStudenten.csv", studentDAO);
+                }
+                case 19 -> {
+                    ReportDAO reportDAO = new ReportDAO(DatabaseConnector.connect());
+                    reportDAO.printStudentsPerCourse();
                 }
 
                 case 0 -> {
