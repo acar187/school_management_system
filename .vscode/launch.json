@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+        "type": "java",
+        "name": "MainDAO",
+        "request": "launch",
+        "mainClass": "com.school_system.MainDAO",
+        "projectName": "school_management_system"
+    },
+    {
+        "type": "java",
+        "name": "ReportChartController",
+        "request": "launch",
+        "mainClass": "com.school_system.ReportChartController",
+        "projectName": "school_management_system"
+    },
+    {
+        "type": "java",
+        "name": "Run via Maven JavaFX Plugin",
+        "request": "launch",
+        "mainClass": "",
+        "preLaunchTask": "maven-javafx-run"
+    }
+]
+}
