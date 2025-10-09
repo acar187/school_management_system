@@ -3,6 +3,27 @@
   "configurations": [
     {
         "type": "java",
+        "name": "LoginServiceMain",
+        "request": "launch",
+        "mainClass": "com.school_system.LoginServiceMain",
+        "projectName": "school_management_system"
+    },
+    {
+        "type": "java",
+        "name": "PasswordUtilMain",
+        "request": "launch",
+        "mainClass": "com.school_system.PasswordUtilMain",
+        "projectName": "school_management_system"
+    },
+    {
+        "type": "java",
+        "name": "UserMain",
+        "request": "launch",
+        "mainClass": "com.school_system.UserMain",
+        "projectName": "school_management_system"
+    },
+    {
+        "type": "java",
         "name": "MainDAO",
         "request": "launch",
         "mainClass": "com.school_system.MainDAO",
