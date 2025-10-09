@@ -3,6 +3,11 @@ package com.school_system;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.school_system.model.Course;
+import com.school_system.model.SchoolManager;
+import com.school_system.model.Student;
+import com.school_system.model.Teacher;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;

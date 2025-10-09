@@ -6,6 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.Buffer;
 
+import com.school_system.dao.StudentDAO;
+import com.school_system.model.Student;
+
 public class CSVImporter {
     public static void importStudentFromCSV(String filePath, StudentDAO studentDAO) {
 
