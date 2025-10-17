@@ -3,6 +3,34 @@
   "configurations": [
     {
         "type": "java",
+        "name": "MainJavaFX",
+        "request": "launch",
+        "mainClass": "com.school_system.main.MainJavaFX",
+        "projectName": "school_management_system"
+    },
+    {
+        "type": "java",
+        "name": "AppCourse",
+        "request": "launch",
+        "mainClass": "com.school_system.main.AppCourse",
+        "projectName": "school_management_system"
+    },
+    {
+        "type": "java",
+        "name": "PasswordUtilMain",
+        "request": "launch",
+        "mainClass": "com.school_system.main.PasswordUtilMain",
+        "projectName": "school_management_system"
+    },
+    {
+        "type": "java",
+        "name": "UserMain",
+        "request": "launch",
+        "mainClass": "com.school_system.main.UserMain",
+        "projectName": "school_management_system"
+    },
+    {
+        "type": "java",
         "name": "Main",
         "request": "launch",
         "mainClass": "com.school_system.main.Main",

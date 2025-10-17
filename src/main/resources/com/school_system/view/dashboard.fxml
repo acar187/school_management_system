@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.school_system.controller.DashboardController"
+            prefWidth="900" prefHeight="700">
+
+    <!-- Menü oben -->
+    <top>
+        <MenuBar>
+            <Menu text="Datei">
+                <MenuItem text="Logout" onAction="#handleLogout"/>
+                <MenuItem text="Beenden" onAction="#handleExit"/>
+            </Menu>
+            <Menu text="Verwaltung">
+                <MenuItem text="Schüler anzeigen" onAction="#showStudents"/>
+                <MenuItem text="Kurse anzeigen" onAction="#showCourses"/>
+            </Menu>
+            <Menu text="Hilfe">
+                <MenuItem text="Info" onAction="#showInfo"/>
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <!-- Begrüßungsbereich -->
+    <center>
+        <VBox alignment="CENTER" spacing="15">
+            <Text fx:id="welcomeText" text="Willkommen!" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <Label fx:id="roleLabel" text="Rolle: ADMIN"/>
+        </VBox>
+    </center>
+
+</BorderPane>

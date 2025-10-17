@@ -12,7 +12,6 @@ public class LoginServiceMain {
             System.out.println("Willkommen, " + logged.getUsername());
         else
             System.out.println("Login fehlgeschlagen!");
-
     }
     //     UserDAO userDAO = new UserDAO();
     //     LoginService loginService = new LoginService(userDAO);

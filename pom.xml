@@ -108,7 +108,8 @@
             <artifactId>javafx-maven-plugin</artifactId>
             <version>0.0.8</version>
             <configuration>
-                <mainClass>com.school_system.ReportChartController</mainClass> <!-- hier deine Main-Klasse -->
+                <!--<mainClass>com.school_system.controller.ReportChartController</mainClass>--> <!-- hier deine Main-Klasse -->
+                <mainClass>com.school_system.main.MainJavaFX</mainClass>
             </configuration>
         </plugin>
       </plugins>

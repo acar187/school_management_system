@@ -9,6 +9,11 @@ public class Student extends Person {
         this.matriculationNumber = matriculationNumber;
     }
     
+
+    public void setMatriculationNumber(String matriculationNumber) {
+        this.matriculationNumber = matriculationNumber;
+    }
+
     public String getMatriculationNumber() {
         return matriculationNumber;
     }
@@ -34,9 +39,6 @@ public class Student extends Person {
     public void setId(int id) {
         this.id = id;
         
-    }
-
-    
-    
+    }   
     
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox spacing="10" alignment="CENTER"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.school_system.controller.LoginController"
+      prefWidth="300" prefHeight="200">
+
+    <Label text="Schulverwaltung - Login" />
+    <TextField fx:id="usernameField" promptText="Benutzername" />
+    <PasswordField fx:id="passwordField" promptText="Passwort" />
+    <Button text="Login" onAction="#onLoginButtonClick" />
+    <Label fx:id="errorLabel" textFill="red" />
+</VBox>
