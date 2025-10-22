@@ -6,6 +6,7 @@
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/model/User.java
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/main/Main.java
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/util/PasswordUtil.java
+/Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/controller/CourseController.java
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/dao/StudentDAO.java
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/controller/LoginController.java
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/model/Student.java

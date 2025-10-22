@@ -17,11 +17,12 @@ import java.util.List;
 public class StudentController {
 
     @FXML private TableView<Student> studentTable;
-    @FXML private TableColumn<Student, Integer> colId;
-    @FXML private TableColumn<Student, String> colName;
-    @FXML private TableColumn<Student, String> colEmail;
-    @FXML private TableColumn<Student, String> colMatriculation;
+    @FXML private TableColumn<Student, Integer> idColumn;
+    @FXML private TableColumn<Student, String> nameColumn;
+    @FXML private TableColumn<Student, String> emailColumn;
+    @FXML private TableColumn<Student, String> matriculationColumn;
     @FXML private TextField searchField;
+    @FXML private Label statusLabel;
 
     @FXML private TextField nameField, emailField, matriculationField;
 
@@ -31,6 +32,7 @@ public class StudentController {
     private FilteredList<Student> filteredList;
 
     private User user;
+    
 
     public void setUser(User user) {
         this.user = user;
@@ -43,10 +45,10 @@ public class StudentController {
         Connection conn = DatabaseConnector.connect();
         studentDAO = new StudentDAO();
 
-        colId.setCellValueFactory(data -> new javafx.beans.property.SimpleIntegerProperty(data.getValue().getId()).asObject());
-        colName.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getName()));
-        colEmail.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getEmail()));
-        colMatriculation.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getMatriculationNumber()));
+        idColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleIntegerProperty(data.getValue().getId()).asObject());
+        nameColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getName()));
+        emailColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getEmail()));
+        matriculationColumn.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getMatriculationNumber()));
 
         loadStudents();
 
@@ -111,7 +113,10 @@ public class StudentController {
     }
 
     @FXML
-    private void handleAdd() {
+    private void handleAddStudent() {
+
+        if (!validateInputs()) return;
+
         String name = nameField.getText();
         String email = emailField.getText();
         String matriculation = matriculationField.getText();
@@ -140,10 +145,17 @@ public class StudentController {
             new Alert(Alert.AlertType.WARNING, "Bitte wähle einen Schüler aus!").show();
             return;
         } else {
+        
+        if (!validateInputs()) return;
 
         String name = nameField.getText();
         String email = emailField.getText();
         String matriculation = matriculationField.getText();
+
+        if (name.isEmpty() || email.isEmpty() || matriculation.isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Bitte alle Felder ausfüllen!").show();
+            return;
+        }
 
         selected.setName(name);
         selected.setEmail(email);
@@ -172,7 +184,7 @@ public class StudentController {
     }
 
     @FXML
-    private void handleDelete() {
+    private void handleDeleteStudent() {
         Student selected = studentTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
             studentDAO.deleteStudent(selected.getId());
@@ -186,4 +198,39 @@ public class StudentController {
         matriculationField.clear();
     }
 
+    private boolean validateInputs() {
+        String name = nameField.getText().trim();
+        String email = emailField.getText().trim();
+        String matric = matriculationField.getText().trim();
+
+        if (name.isEmpty()) {
+            showAlert("Fehler", "Der Name darf nicht leer sein!");
+            return false;
+        }
+
+        if (!email.isEmpty() && !email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+            showAlert("Fehler", "Bitte eine gültige E-Mail-Adresse eingeben!");
+            return false;
+        }
+
+        if (!matric.isEmpty() && !matric.matches("^[A-Za-z0-9_-]{3,20}$")) {
+            showAlert("Fehler", "Matrikelnummer muss zwischen 3 und 20 Zeichen haben (keine Sonderzeichen).");
+            return false;
+        }
+
+        return true;
 }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void showStatus(String message) {
+    statusLabel.setText(message);
+    statusLabel.setStyle("-fx-text-fill: green; -fx-font-weight: bold;");
+}
+}   

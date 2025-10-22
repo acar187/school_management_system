@@ -67,8 +67,12 @@ public class LoginController {
             DashboardController controller = loader.getController();
             controller.setUser(user); // Benutzerobjekt übergeben
 
+            Scene scene = new Scene(root);
+            // 🎨 CSS-Datei global einbinden
+            scene.getStylesheets().add(getClass().getResource("/com/school_system/style/style.css").toExternalForm());
+
             Stage stage = (Stage) usernameField.getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.setScene(scene);
             stage.setTitle("Schulverwaltung – Dashboard");
         } catch (IOException e) {
             e.printStackTrace();

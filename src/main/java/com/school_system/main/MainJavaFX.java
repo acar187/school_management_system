@@ -24,6 +24,10 @@ public class MainJavaFX extends Application{
         LoginController controller = loader.getController();
         //controller.setConnection();
 
+        // 🎨 CSS-Datei global einbinden
+        scene.getStylesheets().add(getClass().getResource("/com/school_system/style/style.css").toExternalForm());
+
+
         stage.setTitle("Schulverwaltung - Login");
         stage.setScene(scene);
         stage.show();

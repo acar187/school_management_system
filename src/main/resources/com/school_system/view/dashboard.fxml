@@ -4,7 +4,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
+<BorderPane fx:id="mainPane"
+            xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.school_system.controller.DashboardController"
             prefWidth="900" prefHeight="700">
 

@@ -2,11 +2,13 @@ package com.school_system.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.CacheHint;
 import javafx.scene.Parent;
 import java.io.IOException;
 
@@ -19,6 +21,8 @@ public class DashboardController {
     private Label roleLabel;
     @FXML
     private Text welcomeText;
+    @FXML
+    private BorderPane mainPane;
 
     private User currentUser;
 
@@ -51,24 +55,21 @@ public class DashboardController {
    @FXML
     private void showStudents() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/school_system/view/student.fxml"));
-            Parent studentView = loader.load();
-
-            // Zugriff auf StudentController, falls du später User brauchst
-            StudentController controller = loader.getController();
-            controller.setUser(currentUser);
-            // Das Root-Layout des Dashboards (BorderPane) holen
-            BorderPane root = (BorderPane) roleLabel.getScene().getRoot();
-            root.setCenter(studentView);
+            Parent studentView = FXMLLoader.load(getClass().getResource("/com/school_system/view/student.fxml"));
+            mainPane.setCenter(studentView); // z. B. BorderPane in deinem Dashboard
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
     @FXML
     private void showCourses() {
-        showInfoAlert("Kursverwaltung", "Hier werden später Kurse angezeigt.");
+        try {
+            Parent courseView = FXMLLoader.load(getClass().getResource("/com/school_system/view/course.fxml"));
+            mainPane.setCenter(courseView); // z. B. BorderPane in deinem Dashboard
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
