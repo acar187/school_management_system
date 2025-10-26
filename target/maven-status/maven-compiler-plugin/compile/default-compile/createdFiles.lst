@@ -3,7 +3,9 @@ com/school_system/main/MainJavaFX.class
 com/school_system/model/Student.class
 com/school_system/dao/UserDAO.class
 com/school_system/controller/CourseController.class
+com/school_system/controller/UserManagementController$1.class
 com/school_system/main/UserMain.class
+com/school_system/controller/UserManagementController.class
 com/school_system/service/LoginService.class
 com/school_system/dao/ReportDAO.class
 com/school_system/dao/CourseDAO.class
@@ -31,6 +33,7 @@ com/school_system/dao/EnrollmentDAO.class
 com/school_system/main/AppEnrollment.class
 com/school_system/main/AppCourse.class
 com/school_system/controller/DashboardController.class
+com/school_system/controller/EnrollmentController.class
 com/school_system/model/User.class
 com/school_system/model/Person.class
 com/school_system/util/DatabaseConnector.class

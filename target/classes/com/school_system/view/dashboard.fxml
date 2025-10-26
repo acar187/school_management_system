@@ -17,8 +17,10 @@
                 <MenuItem text="Beenden" onAction="#handleExit"/>
             </Menu>
             <Menu text="Verwaltung">
-                <MenuItem text="Schüler anzeigen" onAction="#showStudents"/>
-                <MenuItem text="Kurse anzeigen" onAction="#showCourses"/>
+                <MenuItem fx:id="manageStudentsMenu" text="Schüler anzeigen" onAction="#showStudents"/>
+                <MenuItem fx:id="manageCoursesMenu" text="Kurse anzeigen" onAction="#showCourses"/>
+                <MenuItem fx:id="adminOnlyMenu" text="Benutzerverwaltung" onAction="#showUserManagement" />
+                <MenuItem text="Kurs-Zuordnung" onAction="#showEnrollment"/>
             </Menu>
             <Menu text="Hilfe">
                 <MenuItem text="Info" onAction="#showInfo"/>

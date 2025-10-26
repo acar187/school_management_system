@@ -17,6 +17,7 @@
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/model/Course.java
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/util/DatabaseConnector.java
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/dao/UserDAO.java
+/Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/controller/UserManagementController.java
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/exception/StudentNotFoundException.java
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/service/LoginService.java
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/dao/ReportDAO.java
@@ -26,6 +27,7 @@
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/model/Teacher.java
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/model/Person.java
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/model/SchoolManager.java
+/Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/controller/EnrollmentController.java
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/main/AppSearch.java
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/main/AppEnrollmentView.java
 /Users/erkanacar/java_files/school_management_system/src/main/java/com/school_system/exception/CourseNotFoundException.java

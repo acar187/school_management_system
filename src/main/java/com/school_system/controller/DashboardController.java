@@ -26,11 +26,38 @@ public class DashboardController {
 
     private User currentUser;
 
+    @FXML private MenuItem manageStudentsMenu;
+    @FXML private MenuItem manageCoursesMenu;
+    @FXML private MenuItem adminOnlyMenu; // z.B. Benutzerverwaltung
+
     // Wird von LoginController aufgerufen, wenn Benutzer sich erfolgreich anmeldet
     public void setUser(User user) {
         this.currentUser = user;
         welcomeText.setText("Willkommen, " + user.getUsername() + "!");
         roleLabel.setText("Rolle: " + user.getRole());
+        applayRoleBasedAccess(user.getRole());
+    }
+
+    private void applayRoleBasedAccess(String role) {
+        switch (role) {
+            case "ADMIN":
+                // Admin hat vollen Zugriff
+                adminOnlyMenu.setDisable(false);
+                break;
+            case "TEACHER":
+                // Lehrer haben eingeschränkten Zugriff
+                // z.B. könnten Admin-Funktionen deaktiviert werden
+                adminOnlyMenu.setDisable(true);
+                break;
+            case "STUDENT":
+                // Schüler haben noch eingeschränkteren Zugriff
+                // z.B. könnten nur Kurs- und Notenansicht erlaubt sein
+                adminOnlyMenu.setDisable(true);
+                break;
+            default:
+                // Unbekannte Rolle – Zugriff verweigern oder Standardzugriff gewähren
+                break;
+        }
     }
 
     // Logout – zurück zum Login
@@ -71,6 +98,27 @@ public class DashboardController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void showUserManagement() {
+        try {
+            Parent courseView = FXMLLoader.load(getClass().getResource("/com/school_system/view/user_management.fxml"));
+            mainPane.setCenter(courseView); // z. B. BorderPane in deinem Dashboard
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void showEnrollment() {
+        try {
+            Parent courseView = FXMLLoader.load(getClass().getResource("/com/school_system/view/enrollment.fxml"));
+            mainPane.setCenter(courseView); // z. B. BorderPane in deinem Dashboard
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @FXML
     private void showInfo() {

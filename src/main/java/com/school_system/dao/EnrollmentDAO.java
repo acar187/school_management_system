@@ -141,4 +141,17 @@ public class EnrollmentDAO {
             System.out.println("Fehler beim Löschen der Einschreibung: " + e.getMessage());
         }
     }
+
+    // Entfernt einen Kurs von einem Schüler
+    public void removeEnrollment(int studentId, int courseId) {
+        String sql = "DELETE FROM student_courses WHERE student_id = ? AND course_id = ?";
+        try (Connection conn = DatabaseConnector.connect();
+            PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, studentId);
+            ps.setInt(2, courseId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

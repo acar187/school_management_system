@@ -15,6 +15,7 @@ public class User {
     public int getId() {
         return id;
     }
+
     public String getUsername() {
         return username;
     }
@@ -25,6 +26,16 @@ public class User {
         return role;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+    public void setRole(String role) {
+        this.role = role;
+    }
+    
     @Override
     public String toString() {
         return "User{id=" + id + ", username='" + username + "', role='" + role + "'}";
