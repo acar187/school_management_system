@@ -61,4 +61,24 @@ public class GradeDAO {
         }
         return gradesList;
     }  
+
+    public void updateGrade(Grade grade){
+        String sql = "UPDATE grades SET grade = ? WHERE id = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setDouble(1, grade.getGradeValue());
+            pstmt.setInt(2, grade.getId());
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("✅ Note aktualisiert: " + grade);
+            } else {
+                System.out.println("⚠️ Keine Note gefunden mit ID: " + grade.getId());
+            }
+        } catch (SQLException e) {
+            System.out.println("⚠️ Fehler beim Aktualisieren der Note: " + e.getMessage());
+        }
+    }
+
 }
+
+
