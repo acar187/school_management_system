@@ -3,6 +3,13 @@
   "configurations": [
     {
         "type": "java",
+        "name": "MainGrades",
+        "request": "launch",
+        "mainClass": "com.school_system.main.MainGrades",
+        "projectName": "school_management_system"
+    },
+    {
+        "type": "java",
         "name": "MainJavaFX",
         "request": "launch",
         "mainClass": "com.school_system.main.MainJavaFX",
