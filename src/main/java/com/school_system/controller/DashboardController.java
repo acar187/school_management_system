@@ -63,15 +63,47 @@ public class DashboardController {
     // Logout – zurück zum Login
     @FXML
     private void handleLogout() {
+        // try {
+        //     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/school_system/view/login.fxml"));
+        //     Parent root = loader.load();
+        //     Stage stage = (Stage) roleLabel.getScene().getWindow();
+        //     stage.setScene(new Scene(root));
+        //     stage.setTitle("Login – Schulverwaltung");
+        // } catch (IOException e) {
+        //     e.printStackTrace();
+        // }
+        String userName = (currentUser != null ? currentUser.getUsername() : "(unbekannt)");
+        System.out.println("Logout erfolgreich für Benutzer: " + userName);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/school_system/view/login.fxml"));
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/school_system/view/login.fxml"));
             Parent root = loader.load();
-            Stage stage = (Stage) roleLabel.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Login – Schulverwaltung");
+
+            // Try to obtain a valid Stage from known nodes. Some nodes may not yet be attached
+            // to a Scene when this handler is invoked, so check several candidates.
+            Stage stage = null;
+            if (mainPane != null && mainPane.getScene() != null) {
+                stage = (Stage) mainPane.getScene().getWindow();
+            } else if (roleLabel != null && roleLabel.getScene() != null) {
+                stage = (Stage) roleLabel.getScene().getWindow();
+            } else if (welcomeText != null && welcomeText.getScene() != null) {
+                stage = (Stage) welcomeText.getScene().getWindow();
+            }
+
+            if (stage != null) {
+                stage.setScene(new Scene(root));
+                stage.setTitle("Login – Schulverwaltung");
+            } else {
+                // As a fallback, open the login view in a new stage so logout still works.
+                Stage newStage = new Stage();
+                newStage.setScene(new Scene(root));
+                newStage.setTitle("Login – Schulverwaltung");
+                newStage.show();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
     }
 
     @FXML
