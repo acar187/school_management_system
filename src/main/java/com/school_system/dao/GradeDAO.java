@@ -79,6 +79,22 @@ public class GradeDAO {
         }
     }
 
+    public void deleteGrade(int gradeId) {
+        String sql = "DELETE FROM grades WHERE id = ?";
+        try {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, gradeId);
+            int affectedRows = pstmt.executeUpdate();
+            if (affectedRows > 0) {
+                System.out.println("✅ Note gelöscht mit ID: " + gradeId);
+            } else {
+                System.out.println("⚠️ Keine Note gefunden mit ID: " + gradeId);
+            }
+        } catch (SQLException e) {
+            System.out.println("⚠️ Fehler beim Löschen der Note: " + e.getMessage());
+        }
+    }
+
 }
 
 

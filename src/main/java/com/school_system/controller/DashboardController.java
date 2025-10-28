@@ -119,6 +119,16 @@ public class DashboardController {
         }
     }
 
+    @FXML
+    private void onManageGrades() throws IOException {
+        try {
+            Parent gradeView = FXMLLoader.load(getClass().getResource("/com/school_system/view/grade.fxml"));
+            mainPane.setCenter(gradeView); // z. B. BorderPane in deinem Dashboard
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @FXML
     private void showInfo() {
