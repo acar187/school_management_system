@@ -103,7 +103,6 @@ public class DashboardController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
     }
 
     @FXML
