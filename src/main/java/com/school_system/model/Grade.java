@@ -15,8 +15,7 @@ public class Grade {
         this.gradeValue = gradeValue;
         this.dateAssigned = LocalDate.now();
     }
-
-
+    
     public int getId() {
         return id;
     }
