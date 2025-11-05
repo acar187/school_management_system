@@ -20,8 +20,8 @@
                 <MenuItem fx:id="manageStudentsMenu" text="Schüler anzeigen" onAction="#showStudents"/>
                 <MenuItem fx:id="manageCoursesMenu" text="Kurse anzeigen" onAction="#showCourses"/>
                 <MenuItem fx:id="adminOnlyMenu" text="Benutzerverwaltung" onAction="#showUserManagement" />
-                <MenuItem text="Kurs-Zuordnung" onAction="#showEnrollment"/>
-                <MenuItem text="Notenverwaltung" onAction="#onManageGrades"/>
+                <MenuItem fx:id="courseEnrollmentMenu" text="Kurs-Zuordnung" onAction="#showEnrollment"/>
+                <MenuItem fx:id="manageGradesMenu" text="Notenverwaltung" onAction="#onManageGrades"/>
             </Menu>
             <Menu text="Hilfe">
                 <MenuItem text="Info" onAction="#showInfo"/>
