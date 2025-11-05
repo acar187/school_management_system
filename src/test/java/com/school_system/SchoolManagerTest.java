@@ -3,6 +3,7 @@ package com.school_system;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.school_system.exception.StudentNotFoundException;
 import com.school_system.model.Course;
 import com.school_system.model.SchoolManager;
 import com.school_system.model.Student;
@@ -63,8 +64,9 @@ public class SchoolManagerTest {
 
     @Test
     void testFindNonexistentStudent() {
-        Student missing = manager.findStudentById(999);
-        assertNull(missing);
+        assertThrows(StudentNotFoundException.class, () -> {
+            manager.findStudentById(999);
+        });
     }
 
     @Test

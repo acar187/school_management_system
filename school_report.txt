@@ -1,8 +1,7 @@
 ============ Schulbericht ============
-============
 Kurs: Mathematik (ID: 1)
-Lehrer: Frau Schmidt (ID: 1)
+Lehrer: Frau Schmidt (ID: 29)
 Anzahl der Studenten: 1
 Studenten:
- - Anna (ID: 2, Email: anna@example.com, Matrikelnummer: M2025-500)
+ - Anna (ID: 30, Email: anna@example.com, Matrikelnummer: M2025-500)
 -------------------------------------
