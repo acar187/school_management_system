@@ -26,9 +26,12 @@ public class DashboardController {
 
     private User currentUser;
 
-    @FXML private MenuItem manageStudentsMenu;
-    @FXML private MenuItem manageCoursesMenu;
-    @FXML private MenuItem adminOnlyMenu; // z.B. Benutzerverwaltung
+    @FXML private MenuItem manageStudentsMenu; // z.B. Schüler anzeigen für Lehrer/Admin
+    @FXML private MenuItem manageCoursesMenu; // z.B. Kursverwaltung für Lehrer/Admin
+    @FXML private MenuItem adminOnlyMenu; // z.B. Benutzerverwaltung für Admin
+    @FXML private MenuItem courseEnrollmentMenu; // z.B. Kurs-Zuordnung für Admin
+    @FXML private MenuItem manageGradesMenu; // z.B. Notenverwaltung für Lehrer/Admin
+
 
     // Wird von LoginController aufgerufen, wenn Benutzer sich erfolgreich anmeldet
     public void setUser(User user) {
@@ -48,11 +51,16 @@ public class DashboardController {
                 // Lehrer haben eingeschränkten Zugriff
                 // z.B. könnten Admin-Funktionen deaktiviert werden
                 adminOnlyMenu.setDisable(true);
+                courseEnrollmentMenu.setDisable(true);
                 break;
             case "STUDENT":
                 // Schüler haben noch eingeschränkteren Zugriff
                 // z.B. könnten nur Kurs- und Notenansicht erlaubt sein
                 adminOnlyMenu.setDisable(true);
+                manageStudentsMenu.setDisable(true);
+                manageCoursesMenu.setDisable(true);
+                courseEnrollmentMenu.setDisable(true);
+                manageGradesMenu.setDisable(true);
                 break;
             default:
                 // Unbekannte Rolle – Zugriff verweigern oder Standardzugriff gewähren
