@@ -3,6 +3,13 @@
   "configurations": [
     {
         "type": "java",
+        "name": "MainStudentExportService",
+        "request": "launch",
+        "mainClass": "com.school_system.main.MainStudentExportService",
+        "projectName": "school_management_system"
+    },
+    {
+        "type": "java",
         "name": "MainGrades",
         "request": "launch",
         "mainClass": "com.school_system.main.MainGrades",

@@ -5,15 +5,21 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.CacheHint;
 import javafx.scene.Parent;
-import java.io.IOException;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+import com.school_system.dao.StudentDAO;
 import com.school_system.model.Student;
 import com.school_system.model.User;
+import com.school_system.service.StudentExportService;
 
 public class DashboardController {
 
@@ -31,7 +37,7 @@ public class DashboardController {
     @FXML private MenuItem adminOnlyMenu; // z.B. Benutzerverwaltung für Admin
     @FXML private MenuItem courseEnrollmentMenu; // z.B. Kurs-Zuordnung für Admin
     @FXML private MenuItem manageGradesMenu; // z.B. Notenverwaltung für Lehrer/Admin
-
+    @FXML private MenuItem exportid;
 
     // Wird von LoginController aufgerufen, wenn Benutzer sich erfolgreich anmeldet
     public void setUser(User user) {
@@ -61,10 +67,34 @@ public class DashboardController {
                 manageCoursesMenu.setDisable(true);
                 courseEnrollmentMenu.setDisable(true);
                 manageGradesMenu.setDisable(true);
+                exportid.setDisable(true);
                 break;
             default:
                 // Unbekannte Rolle – Zugriff verweigern oder Standardzugriff gewähren
                 break;
+        }
+    }
+
+    @FXML
+    private void handleExport() {
+
+        StudentDAO studentDAO = new StudentDAO();
+        List<Student> studentList = studentDAO.getAllStudents();
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Speichern als CSV");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Dateien", "*.csv"));
+         File file = fileChooser.showSaveDialog(mainPane.getScene().getWindow());
+        if (file != null) {
+            try {
+                // Annahme: Es gibt eine ExportService-Klasse mit einer exportMethode
+                StudentExportService exportService = new StudentExportService();
+                exportService.exportStudentDataToCSV(studentList,file.getAbsolutePath());
+                showInfoAlert("Erfolg", "Daten wurden erfolgreich exportiert nach: " + file.getAbsolutePath());
+            } catch (Exception e) {
+                e.printStackTrace();
+                showInfoAlert("Fehler", "Fehler beim Exportieren der Daten: " + e.getMessage());
+            }
         }
     }
 
@@ -166,6 +196,18 @@ public class DashboardController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void openReportDashboard() {
+
+        try {
+            Parent statisticView = FXMLLoader.load(getClass().getResource("/com/school_system/view/report_dashboard.fxml"));
+            mainPane.setCenter(statisticView); // z. B. BorderPane in deinem Dashboard
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
     }
 
 

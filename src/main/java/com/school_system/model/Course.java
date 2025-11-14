@@ -65,6 +65,6 @@ public class Course {
     @Override
     public String toString() {
         String t = (teacher != null) ? "| Teacher: " + teacher.getName() : "";
-        return "Course [id=" + id + ", name=" + name + ", students=" + studentsSet.size() + "]" + t;
+        return "Course [id=" + id + ", name=" + name + "]" + t;
     }
 }

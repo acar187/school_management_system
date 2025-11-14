@@ -13,6 +13,7 @@
     <top>
         <MenuBar>
             <Menu text="Datei">
+                <MenuItem fx:id= "exportid" text="Exportieren als CSV" onAction="#handleExport"/>
                 <MenuItem text="Logout" onAction="#handleLogout"/>
                 <MenuItem text="Beenden" onAction="#handleExit"/>
             </Menu>
@@ -22,6 +23,9 @@
                 <MenuItem fx:id="adminOnlyMenu" text="Benutzerverwaltung" onAction="#showUserManagement" />
                 <MenuItem fx:id="courseEnrollmentMenu" text="Kurs-Zuordnung" onAction="#showEnrollment"/>
                 <MenuItem fx:id="manageGradesMenu" text="Notenverwaltung" onAction="#onManageGrades"/>
+            </Menu>
+            <Menu text="Statistik">
+                <MenuItem text="Statistik Seite" onAction="#openReportDashboard"/>
             </Menu>
             <Menu text="Hilfe">
                 <MenuItem text="Info" onAction="#showInfo"/>
