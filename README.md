@@ -25,9 +25,11 @@ Es ermöglicht:
 2. Datenbank erstellen: schooldb
 3. Importiere schooldb_backup.sql oder schooldb_schema.sql
 4. SchoolManager-1.0.8.dmg funktioniert mit folgendem Datenbank URL, Benutzer und Password konfiguration:
+   ```
     URL = jdbc:mysql://localhost:3306/schooldb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     USER = schooluser
     PASSWORD = schoolpass
+   ```
 
 ## Run
 1. doppel klick auf SchoolManager-1.0.8.dmg auf einem Macbook
