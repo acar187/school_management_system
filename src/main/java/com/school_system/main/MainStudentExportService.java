@@ -13,7 +13,7 @@ public class MainStudentExportService {
         StudentExportService exportService = new StudentExportService();
         StudentDAO studentDAO = new StudentDAO();
         
-        List<Student> studentList = studentDAO.getAllStudents();;
+        List<Student> studentList = studentDAO.getAllStudents();
          // Example usage (in a real scenario, you would fetch student data from your system)
          exportService.exportStudentDataToCSV(studentList, "students144.csv");   
 
