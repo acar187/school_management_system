@@ -1,7 +1,7 @@
 # Schulverwaltungssystem – JavaFX & MySQL
 
 ## Demo
-
+https://github.com/acar187/school_management_system/releases/tag/demo#:~:text=through%20the%20app.-,Assets,-3
 
 ## Übersicht
 
