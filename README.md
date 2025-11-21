@@ -35,7 +35,7 @@ Es ermöglicht:
    ```
 
 ## Run
-1. doppel klick auf SchoolManager-1.0.8.dmg auf einem Macbook
+1. Doppelklick auf SchoolManager-1.0.8.dmg auf einem Macbook
 
 ## Features
 Benutzerverwaltung
